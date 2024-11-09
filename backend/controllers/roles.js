@@ -1,3 +1,4 @@
+
 const { pool } = require("../models/db");
 
 // Create a new role
@@ -54,3 +55,6 @@ const createRolePermission = async (req, res) => {
   }
 };
 module.exports = { createRole, createPermission, createRolePermission };
+
+
+
