@@ -4,10 +4,23 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../redux/reducers/slicePosts";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import { Input, Button, List, Avatar, message } from "antd";
 import { SearchOutlined, QuestionCircleOutlined, UserOutlined } from "@ant-design/icons";
 import { FloatButton } from "antd";
 import Search from "../search/Search";
+=======
+import SearchBar from "../search/Search";
+import { Input } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
+import { QuestionCircleOutlined } from '@ant-design/icons';
+import { FloatButton } from 'antd';
+const Posts = () => {
+  const userId = localStorage.getItem('user_id')
+  const [addPost , setaddPost] = useState({})
+  const postInfo = {image : addPost.image||null , body : addPost.body|| null ,video:addPost.video||null  }
+  const navigate = useNavigate();
+>>>>>>> d4c6d30e2a42e3e7f64967fd81bf4343109d9adb
 
 const Posts = () => {
   const [addPost, setAddPost] = useState({});
@@ -21,13 +34,15 @@ const Posts = () => {
   // Fetch posts on component mount
   useEffect(() => {
     axios
-      .get("http://localhost:5000/posts", {
+      .get(`http://localhost:5000/followers/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
-        dispatch(setPosts(res.data.Posts));
+     
+        
+        dispatch(setPosts(res.data.data));
       })
       .catch((err) => {
         console.error(err);
