@@ -3,6 +3,7 @@ import "./posts.css";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import { setPosts } from "../redux/reducers/slicePosts";
 
 const Posts = () => {
@@ -12,6 +13,16 @@ const Posts = () => {
     body: addPost.body || null,
     video: addPost.video || null,
   };
+=======
+import Search from "../search/Search";
+
+const Posts = () => {
+  const [addPost, setAddPost] = useState({});
+  const postInfo = { image: addPost.image || null, body: addPost.body || null, video: addPost.video || null };
+  const userId = localStorage.getItem('user_id')
+  const [addPost , setaddPost] = useState({})
+  const postInfo = {image : addPost.image||null , body : addPost.body|| null ,video:addPost.video||null  }
+>>>>>>> c00241a86482bb8bd82966212e9f8d70485b0a70
   const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
