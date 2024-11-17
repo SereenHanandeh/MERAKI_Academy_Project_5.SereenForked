@@ -12,7 +12,7 @@ import Comments from "./components/comments/Comments";
 
 import Explore from "./components/explore/explore";
 
-import SearchBar from "./components/search/Search";
+import Search from "./components/search/Search";
 
 import Followers from "./components/profile/Followers";
 import NextStep from "./components/forgetPassword/NextStep";
@@ -76,7 +76,7 @@ function App() {
         },
         {
           path: "/home/search",
-          element: <SearchBar />,
+          element: <Search />,
         },
         {
           path: "bookmark",

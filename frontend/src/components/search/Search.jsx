@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-// import { Input, List, message } from "antd";
 
 const Search = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -19,46 +18,48 @@ const Search = () => {
       .then((response) => {
         if (response.data.success) {
           setSearchResults(response.data.User); // Update state with results
-          message.success("User(s) found!");
+          alert("User(s) found!"); // Display success message using alert
         }
       })
       .catch((error) => {
         if (error.response) {
           // Handle specific backend error responses
           if (error.response.status === 404) {
-            message.warning("User does not exist.");
+            alert("User does not exist."); // Display warning message
           } else if (error.response.status === 403) {
-            message.error("Unauthorized. Please log in again.");
+            alert("Unauthorized. Please log in again."); // Display error message
           } else {
-            message.error("An error occurred while searching.");
+            alert("An error occurred while searching."); // General error message
           }
         } else {
-          message.error("Server error. Please try again later.");
+          alert("Server error. Please try again later."); // If no response from the server
         }
       });
   };
 
   return (
     <div>
-      <Input.Search
+      <input
+        type="text"
         placeholder="Search for a user"
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
-        onSearch={handleSearch} // Trigger search on pressing Enter or clicking the search icon
-        enterButton
       />
-      <List
-        itemLayout="horizontal"
-        dataSource={searchResults}
-        renderItem={(user) => (
-          <List.Item>
-            <List.Item.Meta
-              title={user.userName} // Adjust field name as per backend response
-              description={user.email} // Adjust field name as per backend response
-            />
-          </List.Item>
+      <button onClick={handleSearch}>Search</button>
+
+      <div>
+        {searchResults.length > 0 ? (
+          <ul>
+            {searchResults.map((user, index) => (
+              <li key={index}>
+                <strong>{user.userName}</strong> - {user.email}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No users found.</p>
         )}
-      />
+      </div>
     </div>
   );
 };
