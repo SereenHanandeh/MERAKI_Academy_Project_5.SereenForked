@@ -65,7 +65,11 @@ const Events = ({ socket }) => {
           }
         )
         .then((response) => {
-          socket.emit("notification", { message: `${greeting} from ${loggedInUser.user_name}`, to: recipientId ,from:userId});
+          socket.emit("notification", {
+            message: `${greeting} from ${loggedInUser.user_name}`,
+            to: recipientId,
+            from: userId,
+          });
           showModal("Success", "Your greeting has been sent successfully!");
           setGreeting("");
         })
@@ -96,14 +100,22 @@ const Events = ({ socket }) => {
           <div key={user.user_id} className="birthday-card-container">
             <div className="birthday-card">
               <h3>{user.user_name}</h3>
-              <textarea
-                value={greeting}
-                onChange={handleGreetingChange}
-                placeholder="Write a greeting..."
-              />
-              <button onClick={() => sendGreeting(user.user_id)}>
-                Send Greeting
-              </button>
+
+              {/* إذا كان المستخدم الحالي هو نفسه صاحب عيد الميلاد، لا نعرض زر إرسال المعايدة */}
+              {user.user_id !== localStorage.getItem("user_id") ? (
+                <>
+                  <textarea
+                    value={greeting}
+                    onChange={handleGreetingChange}
+                    placeholder="Write a greeting..."
+                  />
+                  <button onClick={() => sendGreeting(user.user_id)}>
+                    Send Greeting
+                  </button>
+                </>
+              ) : (
+                <p>🎉 Happy Birthday! 🎉</p> 
+              )}
             </div>
           </div>
         ))

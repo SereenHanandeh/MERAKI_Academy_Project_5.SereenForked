@@ -90,6 +90,7 @@
     position: relative;
     bottom: 4vh;
    }
+   
 }
 @media screen and (max-width :391px  )and (min-width : 380px)  {
     .loginPage{

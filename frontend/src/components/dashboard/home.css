@@ -13,7 +13,7 @@
 
 .nav {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between; /* لضمان التوزيع الجيد بين العناصر */
   align-items: center;
   background-color: #6383db;
   padding: 10px 20px;
@@ -37,7 +37,7 @@
   background-color: #fff;
   border-radius: 5px;
   padding: 3px 8px;
-  width: 900px;
+  width: 600px; /* تعديل عرض حقل البحث */
   height: 40px;
   justify-content: space-between;
 }
@@ -59,7 +59,13 @@
   border-radius: 5px;
   cursor: pointer;
   margin: 0 0 0.1vh 0;
+}
 
+/* تعديل المسافات بين حقل البحث وزر الإشعارات */
+.notification {
+  display: flex;
+  align-items: center;
+  margin-left: 15px; /* المسافة بين حقل البحث وزر الإشعارات */
 }
 
 .organization {
@@ -97,7 +103,7 @@
 }
 
 .sidebar ul li a:hover {
-    color: white;
+  color: white;
 }
 
 .content {
@@ -134,25 +140,40 @@
   color: #555;
 }
 
+/* Media Queries */
 @media (max-width: 768px) {
   .parent {
     flex-direction: column;
   }
 
-  .org {
+  .organization {
     flex-direction: column;
   }
 
+  /* تعديل الشريط الجانبي في الشاشات الصغيرة */
   .sidebar {
     width: 100%;
     margin-bottom: 20px;
   }
 
+  /* تعديل المحتوى ليتناسب مع الشاشات الصغيرة */
   .content {
     width: 100%;
   }
 
+  /* توسيع حقل البحث على الشاشات الصغيرة */
   .search-bar {
     width: 100%;
+  }
+
+  /* الشريط العلوي: تصغير الشعار */
+  .MoltaqaIcon {
+    width: 60px;
+    height: 45px;
+  }
+
+  /* إعادة ترتيب الإشعارات في الشاشات الصغيرة */
+  .notification {
+    margin-left: 0;
   }
 }
